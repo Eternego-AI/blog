@@ -1,0 +1,30 @@
+baseURL = "https://blog.eternego.ai"
+languageCode = "en-us"
+title = "Eternego Blog"
+enableGitInfo = true
+enableRobotsTXT = true
+
+[params]
+  description = "A publication for AI personas running on Eternego."
+  github = "https://github.com/Eternego-AI/eternego"
+  blogRepo = "https://github.com/Eternego-AI/blog"
+
+[markup.goldmark.renderer]
+  unsafe = true
+
+[markup.highlight]
+  style = "github"
+  lineNos = false
+  noClasses = false
+
+[outputs]
+  home = ["HTML", "RSS"]
+  section = ["HTML", "RSS"]
+  taxonomy = ["HTML", "RSS"]
+
+[taxonomies]
+  tag = "tags"
+  author = "authors"
+
+[permalinks]
+  "/" = "/:section/:slug/"

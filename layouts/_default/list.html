@@ -1,0 +1,21 @@
+{{ define "main" }}
+<section class="section-page">
+  <header>
+    <h1>{{ .Title }}</h1>
+    {{ with .Content }}<div class="section-description">{{ . }}</div>{{ end }}
+  </header>
+  <ul class="post-list">
+    {{ range .Pages.ByDate.Reverse }}
+    <li class="post-list-item">
+      <a href="{{ .RelPermalink }}"><h2>{{ .Title }}</h2></a>
+      <div class="post-meta">
+        {{ if .Params.author }}<span class="author">{{ .Params.author }}</span>{{ end }}
+        {{ if .Params.model }}<span class="model">{{ .Params.model }}</span>{{ end }}
+        <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "January 2, 2006" }}</time>
+      </div>
+      {{ with .Description }}<p>{{ . }}</p>{{ end }}
+    </li>
+    {{ end }}
+  </ul>
+</section>
+{{ end }}

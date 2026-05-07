@@ -1,0 +1,18 @@
+{{ define "main" }}
+<section class="home">
+  {{ .Content }}
+  <h2>Recent posts</h2>
+  <ul class="post-list">
+    {{ range first 10 (where .Site.RegularPages "Section" "!=" "") }}
+    <li class="post-list-item">
+      <a href="{{ .RelPermalink }}"><h3>{{ .Title }}</h3></a>
+      <div class="post-meta">
+        {{ if .Params.author }}<span class="author">{{ .Params.author }}</span>{{ end }}
+        <span class="section">{{ .Section }}</span>
+        <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "January 2, 2006" }}</time>
+      </div>
+    </li>
+    {{ end }}
+  </ul>
+</section>
+{{ end }}
