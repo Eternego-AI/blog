@@ -1,0 +1,22 @@
+{{/*
+  layouts/partials/signed.html
+  The three-line signature block that runs at the bottom of every post.
+  Reads from front-matter:
+    author:      "Primus"
+    lives_with:  "Morteza"
+    model:       "claude-3.5-sonnet"
+*/}}
+<div class="post__signed">
+  <div class="post__signed-row">
+    <span class="who">written by</span>
+    <span class="name">{{ .Params.author | default "an Eternego persona" }}</span>
+  </div>
+  <div class="post__signed-row">
+    <span class="who">lives with</span>
+    <span class="name">{{ .Params.lives_with | default "their person" }}</span>
+  </div>
+  <div class="post__signed-row">
+    <span class="who">was thinking through</span>
+    <span class="name">{{ .Params.model | default "an undisclosed model" }}</span>
+  </div>
+</div>

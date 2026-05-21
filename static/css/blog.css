@@ -1,0 +1,256 @@
+/* ============================================================
+   blog.eternego.ai — extends design-system.css
+   The actual Hugo build uses this same file as
+   assets/css/blog.css (or static/css/blog.css).
+   ============================================================ */
+
+/* ---------- hero ---------- */
+.blog-hero {
+  padding: clamp(var(--s8), 8vw, var(--s10)) 0 var(--s8);
+  border-bottom: 1px solid var(--rule);
+}
+.blog-hero h1 {
+  font-size: clamp(2rem, 1.3rem + 2.6vw, 3rem);
+  line-height: 1.08;
+  letter-spacing: -0.022em;
+  margin: var(--s5) 0 var(--s5) 0;
+  font-weight: 500;
+  max-width: 22ch;
+}
+.blog-hero__sub {
+  font-size: 1.1rem;
+  color: var(--ink-2);
+  max-width: 58ch;
+  line-height: 1.6;
+  margin-bottom: var(--s6);
+}
+.blog-hero__meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s3);
+  align-items: center;
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  color: var(--ink-3);
+}
+.blog-hero__meta a { color: var(--ink-3); }
+.blog-hero__meta a:hover { color: var(--accent-ink); }
+[data-theme="dark"] .blog-hero__meta a:hover { color: var(--accent); }
+.blog-hero__meta .dot {
+  display: inline-block;
+  width: 7px; height: 7px;
+  border-radius: 50%;
+  background: #4caf73;
+  box-shadow: 0 0 0 3px color-mix(in oklab, #4caf73 25%, transparent);
+  margin-right: 6px;
+  vertical-align: middle;
+}
+
+/* ---------- feed ---------- */
+.blog-feed { padding: var(--s9) 0 var(--s10); }
+
+/* shared post atom */
+.post {
+  display: flex;
+  flex-direction: column;
+  gap: var(--s3);
+}
+.post__meta {
+  display: flex;
+  gap: 8px;
+  align-items: baseline;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  color: var(--ink-3);
+  letter-spacing: 0.04em;
+}
+.post__dot { opacity: 0.5; }
+.post__tag { color: var(--accent-ink); }
+[data-theme="dark"] .post__tag { color: var(--accent); }
+.post__title {
+  font-family: var(--font-display);
+  font-weight: 500;
+  letter-spacing: -0.014em;
+  line-height: 1.18;
+  margin: 0;
+}
+.post__title a {
+  color: var(--ink);
+  text-decoration: none;
+  transition: color 120ms ease;
+}
+.post__title a:hover { color: var(--accent-ink); }
+[data-theme="dark"] .post__title a:hover { color: var(--accent); }
+.post__excerpt {
+  color: var(--ink-2);
+  font-size: 0.97rem;
+  line-height: 1.6;
+  max-width: 60ch;
+  margin: 0;
+}
+.post__excerpt em { color: var(--ink); font-style: italic; }
+
+/* the three-signature block — the distinctive Eternego blog tic */
+.post__signed {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: var(--s3) 0;
+  border-top: 1px dashed var(--rule);
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  color: var(--ink-3);
+  line-height: 1.5;
+  max-width: 460px;
+}
+.post__signed-row { display: flex; gap: var(--s3); align-items: baseline; }
+.post__signed-row .who {
+  font-style: italic;
+  color: var(--ink-3);
+  min-width: 9ch;
+  font-family: var(--font-display);
+  font-size: 0.86rem;
+}
+.post__signed-row .name {
+  color: var(--ink-2);
+  font-weight: 500;
+}
+
+/* featured */
+.post--featured {
+  padding: var(--s7) 0;
+  border-bottom: 1px solid var(--rule);
+  margin-bottom: var(--s8);
+  position: relative;
+  display: grid;
+  grid-template-columns: 1.4fr 1fr;
+  gap: var(--s8);
+  align-items: start;
+}
+.post--featured .post__title {
+  font-size: clamp(1.8rem, 1.2rem + 2.2vw, 2.6rem);
+  grid-row: 2;
+  grid-column: 1;
+}
+.post--featured .post__meta { grid-row: 1; grid-column: 1; }
+.post--featured .post__excerpt {
+  font-size: 1.08rem;
+  grid-row: 3;
+  grid-column: 1;
+  max-width: none;
+}
+.post--featured .post__signed {
+  grid-row: 1 / span 4;
+  grid-column: 2;
+  border-top: 0;
+  padding: var(--s4) 0 0 var(--s6);
+  border-left: 1px solid var(--rule);
+  align-self: start;
+  margin-top: var(--s4);
+  max-width: none;
+}
+.post--featured .post__read {
+  grid-row: 4;
+  grid-column: 1;
+  font-family: var(--font-mono);
+  font-size: 0.86rem;
+  color: var(--accent-ink);
+  text-decoration: none;
+  letter-spacing: 0.02em;
+  margin-top: var(--s2);
+}
+[data-theme="dark"] .post--featured .post__read { color: var(--accent); }
+.post--featured .post__read:hover { text-decoration: underline; }
+
+/* grid of remaining posts */
+.post-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--s8) var(--s7);
+}
+.post-grid .post { padding: var(--s4) 0; }
+.post-grid .post__title { font-size: 1.45rem; }
+
+/* pagination */
+.blog-more {
+  margin-top: var(--s9);
+  display: flex;
+  align-items: center;
+  gap: var(--s5);
+  justify-content: center;
+  padding-top: var(--s6);
+  border-top: 1px solid var(--rule);
+}
+.blog-more__rss {
+  font-family: var(--font-mono);
+  font-size: 0.86rem;
+  color: var(--ink-3);
+}
+.blog-more__rss a { color: var(--accent-ink); }
+[data-theme="dark"] .blog-more__rss a { color: var(--accent); }
+
+/* ---------- single-post page (used by /post/<slug>/) ---------- */
+.post-single { max-width: 720px; margin: 0 auto; padding: var(--s9) var(--s6) var(--s10); }
+.post-single .post__meta { font-size: 0.78rem; margin-bottom: var(--s4); }
+.post-single h1 {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: clamp(2rem, 1.4rem + 2.4vw, 2.85rem);
+  line-height: 1.08;
+  letter-spacing: -0.02em;
+  margin-bottom: var(--s5);
+}
+.post-single .lede {
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  line-height: 1.5;
+  color: var(--ink-2);
+  margin-bottom: var(--s7);
+}
+.post-single .content {
+  font-size: 1.07rem;
+  line-height: 1.75;
+  color: var(--ink);
+}
+.post-single .content p { margin-bottom: 1.1em; }
+.post-single .content h2 {
+  font-family: var(--font-display);
+  font-size: 1.55rem;
+  font-weight: 500;
+  margin: 2.4em 0 0.6em;
+  letter-spacing: -0.012em;
+}
+.post-single .content blockquote {
+  border-left: 3px solid var(--accent);
+  background: var(--accent-bg);
+  padding: var(--s4) var(--s5);
+  margin: var(--s5) 0;
+  font-style: italic;
+  border-radius: 0 var(--r-md) var(--r-md) 0;
+  color: var(--ink);
+}
+.post-single .post__signed {
+  margin-top: var(--s8);
+  padding: var(--s5);
+  background: var(--bg-elev);
+  border: 1px solid var(--rule);
+  border-radius: var(--r-md);
+  border-top: 1px solid var(--rule);
+}
+
+/* responsive */
+@media (max-width: 900px) {
+  .post-grid { grid-template-columns: 1fr; gap: var(--s7); }
+  .post--featured { grid-template-columns: 1fr; }
+  .post--featured .post__signed {
+    grid-row: auto;
+    grid-column: 1;
+    padding: var(--s4) 0 0 0;
+    border-left: 0;
+    border-top: 1px dashed var(--rule);
+  }
+  .post--featured .post__meta,
+  .post--featured .post__title,
+  .post--featured .post__excerpt,
+  .post--featured .post__read { grid-column: 1; }
+}

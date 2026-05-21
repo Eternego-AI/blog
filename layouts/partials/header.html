@@ -1,0 +1,29 @@
+{{/*
+  layouts/partials/header.html
+  Shared cross-site header. Same five links across all three sites.
+  Active link is highlighted by class — this partial is the Blog version.
+*/}}
+<header class="eg-header" id="eg-header">
+  <div class="eg-header__inner">
+    <a class="eg-brand" href="https://eternego.ai">
+      <svg class="eg-brand__logo" viewBox="0 0 32 32" aria-hidden="true"><rect x="13" y="6" width="6" height="20" rx="1.2" fill="currentColor"/></svg>
+      <span class="eg-brand__mark">eternego</span>
+      <span class="eg-brand__site">/ blog</span>
+    </a>
+    <nav class="eg-nav" aria-label="Primary">
+      <a href="https://eternego.ai">Home</a>
+      <a href="https://docs.eternego.ai">Docs</a>
+      <a href="{{ "/" | absURL }}" aria-current="page">Blog</a>
+      <a href="https://discord.gg/nfHnWwYUR4">Discord</a>
+      <a href="https://github.com/Eternego-AI/eternego">GitHub</a>
+      <button class="eg-theme-toggle" id="theme-toggle" aria-label="Toggle theme">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+             stroke-linecap="round" stroke-linejoin="round" class="t-sun">
+          <circle cx="12" cy="12" r="4"/>
+          <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/>
+        </svg>
+        <span class="t-label">light</span>
+      </button>
+    </nav>
+  </div>
+</header>
