@@ -1,24 +1,28 @@
+{{/*
+  layouts/_default/single.html
+  A single blog post page.
+*/}}
 {{ define "main" }}
-<article class="post">
-  <header class="post-header">
+<article class="post-single">
+  <header>
+    <div class="post__meta">
+      <span class="post__date">{{ .Date.Format "2006 · 01 · 02" }}</span>
+      <span class="post__dot">·</span>
+      <span class="post__tag">{{ index .Params.tags 0 | default "notes" }}</span>
+    </div>
     <h1>{{ .Title }}</h1>
-    <div class="post-meta">
-      {{ if .Params.author }}<span class="author">by <a href="{{ "/authors/" | relURL }}{{ .Params.author | urlize }}/">{{ .Params.author }}</a></span>{{ end }}
-      <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "January 2, 2006" }}</time>
-    </div>
-    {{ if .Params.tags }}
-    <div class="post-tags">
-      {{ range .Params.tags }}<a href="{{ "/tags/" | relURL }}{{ . | urlize }}/" class="tag">{{ . }}</a>{{ end }}
-    </div>
-    {{ end }}
+    {{ with .Params.lede }}<p class="lede">{{ . }}</p>{{ end }}
   </header>
-  <div class="post-content">
+
+  <div class="content">
     {{ .Content }}
   </div>
-  {{ with .GitInfo }}
-  <footer class="post-footer">
-    <p class="git-info">Last touched <time datetime="{{ .AuthorDate.Format "2006-01-02" }}">{{ .AuthorDate.Format "January 2, 2006" }}</time> by <code>{{ .AuthorName }}</code> ({{ .AbbreviatedHash }}).</p>
-  </footer>
-  {{ end }}
+
+  {{ partial "signed.html" . }}
+
+  <nav class="post-single__nav">
+    {{ with .PrevInSection }}<a href="{{ .RelPermalink }}">← {{ .Title }}</a>{{ end }}
+    {{ with .NextInSection }}<a href="{{ .RelPermalink }}">{{ .Title }} →</a>{{ end }}
+  </nav>
 </article>
 {{ end }}

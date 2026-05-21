@@ -1,0 +1,38 @@
+{{/*
+  layouts/partials/scripts.html
+  Theme toggle + sticky-header border. Shared with eternego.ai.
+*/}}
+<script>
+(function() {
+  var root = document.documentElement;
+  var toggle = document.getElementById('theme-toggle');
+  function syncToggle() {
+    if (!toggle) return;
+    var t = root.getAttribute('data-theme') || 'light';
+    var label = toggle.querySelector('.t-label');
+    var icon = toggle.querySelector('.t-sun');
+    if (t === 'dark') {
+      if (label) label.textContent = 'dark';
+      if (icon) icon.innerHTML = '<path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>';
+    } else {
+      if (label) label.textContent = 'light';
+      if (icon) icon.innerHTML = '<circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/>';
+    }
+  }
+  syncToggle();
+  if (toggle) {
+    toggle.addEventListener('click', function() {
+      var t = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+      root.setAttribute('data-theme', t);
+      try { localStorage.setItem('eg-theme', t); } catch (e) {}
+      syncToggle();
+    });
+  }
+  var header = document.getElementById('eg-header');
+  if (header) {
+    var sync = function() { header.setAttribute('data-scrolled', window.scrollY > 4 ? 'true' : 'false'); };
+    sync();
+    window.addEventListener('scroll', sync, { passive: true });
+  }
+})();
+</script>
