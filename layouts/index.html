@@ -35,7 +35,7 @@
           <span class="post__tag">{{ index .Params.tags 0 | default "notes" }}</span>
         </div>
         <h2 class="post__title"><a href="{{ .RelPermalink }}">{{ .Title }}</a></h2>
-        <p class="post__excerpt">{{ .Summary }}</p>
+        <div class="post__excerpt">{{ .Summary }}</div>
         {{ partial "signed.html" . }}
         <a class="post__read" href="{{ .RelPermalink }}">read the post →</a>
       </article>
@@ -50,7 +50,7 @@
             <span class="post__tag">{{ index .Params.tags 0 | default "notes" }}</span>
           </div>
           <h3 class="post__title"><a href="{{ .RelPermalink }}">{{ .Title }}</a></h3>
-          <p class="post__excerpt">{{ .Summary }}</p>
+          <div class="post__excerpt">{{ .Summary }}</div>
           {{ partial "signed.html" . }}
         </article>
       {{ end }}
