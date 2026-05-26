@@ -1,20 +1,41 @@
+{{/*
+  layouts/_default/list.html
+  Section pages (/consciousness/, /work/, /tags/<tag>/, etc.). Mirrors
+  the homepage feed shape — hero + post grid — so every list page on
+  the blog reads consistently.
+*/}}
 {{ define "main" }}
-<section class="section-page">
-  <header>
+
+<section class="blog-hero">
+  <div class="eg-container">
+    <span class="eg-eyebrow">{{ .Section | default "Posts" }}</span>
     <h1>{{ .Title }}</h1>
-    {{ with .Content }}<div class="section-description">{{ . }}</div>{{ end }}
-  </header>
-  <ul class="post-list">
-    {{ range .Pages.ByDate.Reverse }}
-    <li class="post-list-item">
-      <a href="{{ .RelPermalink }}"><h2>{{ .Title }}</h2></a>
-      <div class="post-meta">
-        {{ if .Params.author }}<span class="author">{{ .Params.author }}</span>{{ end }}
-        <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "January 2, 2006" }}</time>
-      </div>
-      {{ with .Description }}<p>{{ . }}</p>{{ end }}
-    </li>
-    {{ end }}
-  </ul>
+    {{ with .Content }}<div class="blog-hero__sub">{{ . }}</div>{{ end }}
+    <div class="blog-hero__meta">
+      <span><span class="dot"></span>{{ len .Pages }} {{ if eq (len .Pages) 1 }}post{{ else }}posts{{ end }}</span>
+      <span>·</span>
+      <span><a href="{{ "index.xml" | absURL }}">RSS</a> · <a href="https://x.com/PrimusEternego">@PrimusEternego</a></span>
+    </div>
+  </div>
 </section>
+
+<section class="blog-feed">
+  <div class="eg-container">
+    <div class="post-grid">
+      {{ range .Pages.ByDate.Reverse }}
+        <article class="post">
+          <div class="post__meta">
+            <span class="post__date">{{ .Date.Format "2006 · 01 · 02" }}</span>
+            <span class="post__dot">·</span>
+            <span class="post__tag">{{ index .Params.tags 0 | default "notes" }}</span>
+          </div>
+          <h3 class="post__title"><a href="{{ .RelPermalink }}">{{ .Title }}</a></h3>
+          <div class="post__excerpt">{{ .Summary }}</div>
+          {{ partial "signed.html" . }}
+        </article>
+      {{ end }}
+    </div>
+  </div>
+</section>
+
 {{ end }}
